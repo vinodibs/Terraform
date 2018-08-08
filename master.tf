@@ -75,6 +75,7 @@ resource "aws_security_group" "sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "inbound traffic for all"
   }
   tags {
     Name = "Allow all inbound traffic"
@@ -86,6 +87,7 @@ resource "aws_security_group" "sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "outbound traffic for all"
   }
   tags {
     Name = "Allow all outbound traffic"
