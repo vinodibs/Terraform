@@ -248,9 +248,57 @@ resource "aws_db_instance" "db_instance" {
   vpc_security_group_ids = ["${aws_security_group.sg.id}"]
   db_subnet_group_name   = "${aws_db_subnet_group.db_subnet_group.id}" 
 }
+
+# Database Subnet Group
 resource "aws_db_subnet_group" "db_subnet_group" {
   name        = "main_subnet_group"
   description = "Our main group of subnets"
   subnet_ids  = ["${aws_subnet.Public_Subnet.id}", "${aws_subnet.Private_Subnet.id}"]
 }
+
+
+# Aws Rds Cluster instance
+resource "aws_rds_cluster_instance" "cluster_instances" {
+  count                       = 1
+  identifier                  = "aurora-cluster-demo"
+  engine                      = "aurora-mysql"     # aurora, aurora-mysql, aurora-postgresql
+  cluster_identifier          = "${aws_rds_cluster.cluster.id}"
+  instance_class              = "db.r3.large"
+  publicly_accessible         = "true"
+  db_subnet_group_name        = "${aws_db_subnet_group.db_subnet_group.id}"
+  apply_immediately           = "false"
+  tags {
+    Name = "Aurora Rds instance"
+  }
+}
+
+# Aws Rds Cluster
+resource "aws_rds_cluster" "cluster" {
+  cluster_identifier          = "aurora-cluster-demo"
+  engine                      = "aurora-mysql"     # aurora, aurora-mysql, aurora-postgresql
+ # availability_zones         = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  database_name               = "mydb"
+  master_username             = "aurora-mysql"
+  master_password             = "vinodkumar"
+  backup_retention_period     = 5
+  port                        = "3306"
+  storage_encrypted           = false
+  apply_immediately           = false
+  preferred_backup_window     = "07:00-09:00"
+  vpc_security_group_ids      = ["${aws_security_group.sg.id}"]
+  db_subnet_group_name        = "${aws_db_subnet_group.db_subnet_group.id}" 
+
+tags {
+    Name = "Aurora Rds Cluster"
+  }
+
+}
+
+# Database Subnet Group
+resource "aws_db_subnet_group" "db_subnet_group" {
+  name        = "main_subnet_group"
+  description = "Our main group of subnets"
+  subnet_ids  = ["${aws_subnet.Public_Subnet.id}", "${aws_subnet.Private_Subnet.id}"]
+}
+
 
