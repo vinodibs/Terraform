@@ -80,6 +80,15 @@ resource "aws_security_group" "sg" {
   tags {
     Name = "Allow all inbound traffic"
   }
+  
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    self        = "true"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "ssh"
+  }
 
 # outbound traffic 
   egress {
