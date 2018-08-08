@@ -12,7 +12,6 @@ enable_dns_hostnames = "true"
 tags {
     Name = "VPC"
   }
-
 }
 
 # Public Subnet 
@@ -38,12 +37,10 @@ resource "aws_subnet" "Private_Subnet" {
 # Public Route Table for Internet Gateway
 resource "aws_route_table" "Public_Route" {
   vpc_id = "${aws_vpc.vpc.id}"
-
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.igw.id}"
   }
-
   tags {
     Name = "Public Route Table"
   }
@@ -52,12 +49,10 @@ resource "aws_route_table" "Public_Route" {
 # Private Route Table Nat gateway
 resource "aws_route_table" "Private_Route" {
   vpc_id = "${aws_vpc.vpc.id}"
-
   route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = "${aws_nat_gateway.nat_gw.id}"
   }
-
   tags {
     Name = "Private Route Table"
   }
@@ -112,9 +107,7 @@ resource "aws_main_route_table_association" "Private_Association" {
 resource "aws_route_table_association" "Public_Association" {
   subnet_id      = "${aws_subnet.Public_Subnet.id}"
   route_table_id = "${aws_route_table.Public_Route.id}"
-  
 }
-
 
 # Internet Gateway 
 resource "aws_internet_gateway" "igw" {
@@ -146,27 +139,24 @@ resource "aws_eip_association" "eip_assoc" {
   allocation_id = "${aws_eip.eip.id}"
 }
 
-
 # Allocate EIP to Nat Gateway 
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = "${aws_eip.nat_eip.id}"
   subnet_id     = "${aws_subnet.Public_Subnet.id}"
-  
     tags {
     Name = "Allocate EIP to Nat Gateway"
   }
 }
 
 # DHCP Options Set Create
-resource "aws_vpc_dhcp_options" "Audiology_Dhcp" {
-  domain_name          = "audiologydesign.local"
+resource "aws_vpc_dhcp_options" "dhcp_options" {
+  domain_name          = "test.local"
   domain_name_servers  = ["127.0.0.1"]
   ntp_servers          = ["127.0.0.1"]
   netbios_name_servers = ["127.0.0.1"]
   netbios_node_type    = 2
-
   tags {
-    Name = "Audiology_Dhcp"
+    Name = "Dhcp"
   }
 }
 
