@@ -69,17 +69,28 @@ resource "aws_security_group" "sg" {
   description = "Allow all inbound traffic"
   vpc_id      = "${aws_vpc.vpc.id}"
 
+# inbound traffic 
   ingress {
     from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags {
-    Name = "Allow all traffic"
+    Name = "Allow all inbound traffic"
+  }
+
+# outbound traffic 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags {
+    Name = "Allow all outbound traffic"
   }
 }
-
 # Private Route table Association
 resource "aws_main_route_table_association" "Private_Association" {
   vpc_id         = "${aws_vpc.vpc.id}"
