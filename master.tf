@@ -34,6 +34,18 @@ resource "aws_subnet" "Private_Subnet" {
   }
 }
 
+# Private Route table Association
+resource "aws_main_route_table_association" "Private_Association" {
+  vpc_id         = "${aws_vpc.vpc.id}"
+  route_table_id = "${aws_route_table.Private_Route.id}"
+}
+
+# Public Route table Association
+resource "aws_route_table_association" "Public_Association" {
+  subnet_id      = "${aws_subnet.Public_Subnet.id}"
+  route_table_id = "${aws_route_table.Public_Route.id}"
+}
+
 # Public Route Table for Internet Gateway
 resource "aws_route_table" "Public_Route" {
   vpc_id = "${aws_vpc.vpc.id}"
@@ -96,17 +108,6 @@ resource "aws_security_group" "sg" {
   tags {
     Name = "Allow all outbound traffic"
   }
-}
-# Private Route table Association
-resource "aws_main_route_table_association" "Private_Association" {
-  vpc_id         = "${aws_vpc.vpc.id}"
-  route_table_id = "${aws_route_table.Private_Route.id}"
-}
-
-# Public Route table Association
-resource "aws_route_table_association" "Public_Association" {
-  subnet_id      = "${aws_subnet.Public_Subnet.id}"
-  route_table_id = "${aws_route_table.Public_Route.id}"
 }
 
 # Internet Gateway 
@@ -300,5 +301,3 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   description = "Our main group of subnets"
   subnet_ids  = ["${aws_subnet.Public_Subnet.id}", "${aws_subnet.Private_Subnet.id}"]
 }
-
-
