@@ -39,7 +39,7 @@ variable "count" {
 }
 
 
-variable "monitoringe" {
+variable "monitoring" {
   description = "monitoring"
   default     = "false"
 }
