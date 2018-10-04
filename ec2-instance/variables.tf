@@ -30,8 +30,8 @@ variable "subnet_id" {
   default     = ""
 }
 
-variable "var.associate_public_ip_address" {
-  description = "var.associate_public_ip_address"
+variable "associate_public_ip_address" {
+  description = "associate_public_ip_address"
   default     = "true"
 }
 
