@@ -30,6 +30,11 @@ variable "subnet_id" {
   default     = ""
 }
 
+variable "var.associate_public_ip_address" {
+  description = "var.associate_public_ip_address"
+  default     = "true"
+}
+
 variable "vpc_security_group_ids" {
   description = "vpc_security_group_ids"
   type        = "string"
