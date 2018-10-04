@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "ami" {
-  description = "Your Ami id "
+  description = "ami"
   type        = "string"
   default     = ""
 }
@@ -17,7 +17,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "key_name"
-  default	  = "streo"
+  default	  = "tt"
 }
 
 variable "disable_api_termination" {
