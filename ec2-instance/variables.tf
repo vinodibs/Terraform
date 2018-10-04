@@ -1,13 +1,11 @@
 variable "region" {
   description = "Provide here region name"
-  type        = "string"
-  default     = ""
+  default     = "us-east-2"
 }
 
 variable "ami" {
   description = "ami"
-  type        = "string"
-  default     = ""
+  default     = "ami-0782e9ee97725263d"
 }
 
 variable "instance_type" {
@@ -37,8 +35,7 @@ variable "associate_public_ip_address" {
 
 variable "vpc_security_group_ids" {
   description = "vpc_security_group_ids"
-  type        = "string"
-  default     = ""
+  default     = "default"
 }
 
 variable "count" {
@@ -46,13 +43,7 @@ variable "count" {
   default	  = "1"
 }
 
-variable "volume_tags" {
-  description = "volume_tags"
-  default     = "vinod"
-}
-
 variable "volume_size" {
   description = "volume_size"
-  type        = "string"
-  default     = ""
+  default     = "60"
 }
