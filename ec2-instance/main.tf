@@ -4,7 +4,7 @@ provider "aws" {
 
 # Public Ec2-Instance
 resource "aws_instance" "Public_Ec2" {
-  ami                                  = "${var.ami}  # Ubuntu 16.04 "ami-188fba77"
+  ami                                  = "${var.ami}"  # Ubuntu 16.04 "ami-188fba77"
   instance_type                        = "${var.instance_type}"
   instance_initiated_shutdown_behavior = "stop"
   key_name                             = "${var.key_name}"
@@ -12,15 +12,15 @@ resource "aws_instance" "Public_Ec2" {
   subnet_id                            = "${var.subnet_id}"
   associate_public_ip_address          = "${associate_public_ip_address}"
   vpc_security_group_ids               = ["${var.vpc_security_group_ids}"]
-  ebs_optimized                        = false
-  monitoring                           = true
-  count                                = ${var.count}"
+  ebs_optimized                        = "false"
+  monitoring                           = "true"
+  count                                = "${var.count}"
 
 # Root EBS Volume Size
 root_block_device {
 volume_tags 	= "${var.volume_tags}"
 volume_type 	= "gp2"
-volume_size		= ${var.volume_size}"
+volume_size		= "${var.volume_size}"
 }
 
   tags {
