@@ -23,11 +23,6 @@ variable "disable_api_termination" {
   default     = "true"
 }
 
-variable "subnet_id" {
-  description = "subnet_id"
-  default     = ""
-}
-
 variable "associate_public_ip_address" {
   description = "associate_public_ip_address"
   default     = "true"
@@ -41,6 +36,12 @@ variable "vpc_security_group_ids" {
 variable "count" {
   description = "count"
   default	  = "1"
+}
+
+
+variable "monitoringe" {
+  description = "monitoring"
+  default     = "false"
 }
 
 variable "volume_size" {
