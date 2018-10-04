@@ -15,10 +15,9 @@ resource "aws_instance" "Public_Ec2" {
   ebs_optimized                        = "false"
   monitoring                           = "true"
   count                                = "${var.count}"
-
+ 
 # Root EBS Volume Size
 root_block_device {
-volume_tags 	= "${var.volume_tags}"
 volume_type 	= "gp2"
 volume_size		= "${var.volume_size}"
 }
