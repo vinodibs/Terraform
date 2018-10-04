@@ -10,7 +10,7 @@ resource "aws_instance" "Public_Ec2" {
   key_name                             = "${var.key_name}"
   disable_api_termination              = "${var.disable_api_termination}"
   subnet_id                            = "${var.subnet_id}"
-  associate_public_ip_address          = "${associate_public_ip_address}"
+  associate_public_ip_address          = "${var.associate_public_ip_address}"
   vpc_security_group_ids               = ["${var.vpc_security_group_ids}"]
   ebs_optimized                        = "false"
   monitoring                           = "true"
