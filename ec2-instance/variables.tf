@@ -38,7 +38,6 @@ variable "count" {
   default	  = "1"
 }
 
-
 variable "monitoring" {
   description = "monitoring"
   default     = "false"
