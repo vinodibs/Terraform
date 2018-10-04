@@ -22,8 +22,10 @@ volume_type 	= "gp2"
 volume_size		= "${var.volume_size}"
 }
 
-  tags {
-    Name = "Public-Ec2-Ubuntu-16.04"
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+    Name        = "instance-public"
   }
   
 }
