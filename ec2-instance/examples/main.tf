@@ -148,16 +148,6 @@ resource "aws_security_group" "sg" {
 
 
 # inbound traffic 
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "inbound traffic for all"
-  }
-  tags {
-    Name = "Allow all inbound traffic"
-  }
   
   ingress {
     from_port   = 22
@@ -166,6 +156,7 @@ resource "aws_security_group" "sg" {
     self        = "true"
     cidr_blocks = ["0.0.0.0/0"]
     description = "SSH"
+    tags { Name = "Allow for all inbound SSH traffic" }
   }
 
   ingress {
@@ -175,6 +166,7 @@ resource "aws_security_group" "sg" {
     self        = "true"
     cidr_blocks = ["0.0.0.0/0"]
     description = "HTTP"
+    tags { Name = "Allow for all inbound HTTP traffic" }
   }
 
   ingress {
@@ -184,6 +176,7 @@ resource "aws_security_group" "sg" {
     self        = "true"
     cidr_blocks = ["0.0.0.0/0"]
     description = "HTTPS"
+    tags { Name = "Allow for all inbound HTTPS traffic" }
   }
 
 
@@ -194,6 +187,7 @@ resource "aws_security_group" "sg" {
     self        = "true"
     cidr_blocks = ["0.0.0.0/0"]
     description = "RDP"
+    tags { Name = "Allow for all inbound RDP traffic" }
   } 
 
 # outbound traffic 
