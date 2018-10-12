@@ -31,6 +31,13 @@ resource "aws_subnet" "public-sub1" {
   tags { Name = "Public-Subnet-1" }
 }
 
+#Public Subnet
+resource "aws_subnet" "public-sub2" {
+  availability_zone = "${data.aws_availability_zones.available.names[2]}"
+  vpc_id     = "${aws_vpc.vpc.id}"
+  cidr_block = "10.0.3.0/24"  
+  tags { Name = "Public-Subnet-2" }
+}
 
 # Public Route Table for Internet Gateway
 resource "aws_route_table" "public_route" {
