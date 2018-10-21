@@ -5,7 +5,7 @@ variable "region" {
 
 variable "vpc_tags" {
   description = "VPC Tags"
-  default     = "Audiology"
+  default     = "test-vpc"
 }
 
 variable "sg_tags" {
@@ -25,7 +25,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "key_name"
-  default     = "audiology"
+  default     = "test-key"
 }
 
 variable "associate_public_ip_address" {
@@ -45,7 +45,7 @@ variable "root_volume_size" {
 
 variable "ec2_tags" {
   description = "ec2_tags"
-  default     = "Audiolog-qa-WP"
+  default     = "test-ec2"
 }
 
 
